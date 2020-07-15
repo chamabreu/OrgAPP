@@ -7,10 +7,69 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--StartupVC-->
+        <scene sceneID="1fl-gY-fwt">
+            <objects>
+                <viewController id="Sde-LY-e2b" customClass="StartupVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Puy-7T-5dg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-H3-lAl">
+                                <rect key="frame" x="50" y="144" width="275" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-fL-Nha">
+                                <rect key="frame" x="50" y="208" width="275" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaI-GS-eGr">
+                                <rect key="frame" x="166.5" y="262" width="42" height="30"/>
+                                <state key="normal" title="Log In"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="rQ0-wa-B3U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-8U-5oj">
+                                <rect key="frame" x="288" y="617" width="67" height="30"/>
+                                <state key="normal" title="New User"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyO-OS-bXU">
+                                <rect key="frame" x="170" y="74" width="35" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="y7o-H3-lAl" firstAttribute="leading" secondItem="Yu0-3L-set" secondAttribute="leading" constant="50" id="4Y7-q7-mDM"/>
+                            <constraint firstItem="Yu0-3L-set" firstAttribute="trailing" secondItem="cPL-fL-Nha" secondAttribute="trailing" constant="50" id="8Yx-kx-FoW"/>
+                            <constraint firstItem="cPL-fL-Nha" firstAttribute="top" secondItem="y7o-H3-lAl" secondAttribute="bottom" constant="30" id="Gkc-MD-gmf"/>
+                            <constraint firstItem="TyO-OS-bXU" firstAttribute="centerX" secondItem="Puy-7T-5dg" secondAttribute="centerX" id="U15-dH-ck6"/>
+                            <constraint firstItem="y7o-H3-lAl" firstAttribute="top" secondItem="Yu0-3L-set" secondAttribute="top" constant="100" id="UnE-54-c5S"/>
+                            <constraint firstItem="Yu0-3L-set" firstAttribute="bottom" secondItem="Iog-8U-5oj" secondAttribute="bottom" constant="20" id="cXF-8Y-cYm"/>
+                            <constraint firstItem="UaI-GS-eGr" firstAttribute="top" secondItem="cPL-fL-Nha" secondAttribute="bottom" constant="20" id="jXq-0v-FAo"/>
+                            <constraint firstItem="UaI-GS-eGr" firstAttribute="centerX" secondItem="Puy-7T-5dg" secondAttribute="centerX" id="saD-Cr-WEY"/>
+                            <constraint firstItem="TyO-OS-bXU" firstAttribute="top" secondItem="Yu0-3L-set" secondAttribute="top" constant="30" id="slx-Zs-1Nm"/>
+                            <constraint firstItem="Yu0-3L-set" firstAttribute="trailing" secondItem="Iog-8U-5oj" secondAttribute="trailing" constant="20" id="vDN-ue-YF8"/>
+                            <constraint firstItem="cPL-fL-Nha" firstAttribute="leading" secondItem="Yu0-3L-set" secondAttribute="leading" constant="50" id="xw1-0s-408"/>
+                            <constraint firstItem="Yu0-3L-set" firstAttribute="trailing" secondItem="y7o-H3-lAl" secondAttribute="trailing" constant="50" id="z0e-BW-xE3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Yu0-3L-set"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GDp-5D-CCg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D9M-iy-tAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1258" y="-251"/>
+        </scene>
         <!--Projects-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Projects" id="BYZ-38-t0r" customClass="ProjectsVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Projects" id="BYZ-38-t0r" customClass="ProjectsVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +129,7 @@
         <!--Photos-->
         <scene sceneID="3my-Dc-221">
             <objects>
-                <viewController title="Photos" id="ePE-td-7i6" customClass="PhotosVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Photos" id="ePE-td-7i6" customClass="PhotosVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ti8-E6-Jw0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +183,7 @@
         <!--Notes-->
         <scene sceneID="p4a-WA-AUX">
             <objects>
-                <viewController title="Notes" id="klG-94-LpV" customClass="NotesVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Notes" id="klG-94-LpV" customClass="NotesVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jtZ-B4-Qdv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -172,7 +231,7 @@
         <!--To Do DetailVC-->
         <scene sceneID="1xB-qw-nRW">
             <objects>
-                <viewController id="MmC-gG-sQX" customClass="ToDoDetailVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MmC-gG-sQX" customClass="ToDoDetailVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZMx-uf-42C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -245,7 +304,7 @@
         <!--Import PhotoVC-->
         <scene sceneID="nBh-tA-nsI">
             <objects>
-                <collectionViewController id="K8H-vE-Mqt" customClass="ImportPhotoVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="K8H-vE-Mqt" customClass="ImportPhotoVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fQZ-6Q-wYv" userLabel="AllPhotos">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -281,7 +340,7 @@
         <!--FullSizePhoto-->
         <scene sceneID="lZV-cD-6db">
             <objects>
-                <viewController title="FullSizePhoto" id="q1p-OV-UDc" customClass="FullSizePhotoVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="FullSizePhoto" id="q1p-OV-UDc" customClass="FullSizePhotoVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dUM-BL-NK8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,7 +370,7 @@
         <!--Note DetailVC-->
         <scene sceneID="u7s-Ef-6R2">
             <objects>
-                <viewController id="MF5-dQ-EBm" customClass="NoteDetailVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="MF5-dQ-EBm" customClass="NoteDetailVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6tp-Ci-4LI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -363,7 +422,7 @@
         <!--ToDos-->
         <scene sceneID="BG9-bS-9f0">
             <objects>
-                <tableViewController id="4b1-fc-N4T" customClass="ToDosVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4b1-fc-N4T" customClass="ToDosVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="60V-4e-hJo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,7 +455,8 @@
         <!--Project Tab BarVC-->
         <scene sceneID="Wyc-6v-UMk">
             <objects>
-                <tabBarController id="dLG-f5-epP" customClass="ProjectTabBarVC" customModule="OrgApp_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="dLG-f5-epP" customClass="ProjectTabBarVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="HOq-b9-c5Y"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KQC-mC-QME">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -423,12 +483,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Yo4-ht-gso"/>
+                        <segue destination="Sde-LY-e2b" kind="relationship" relationship="rootViewController" id="bJh-xk-GsT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vS8-Tz-LWq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1162.4000000000001" y="-249.62518740629687"/>
+            <point key="canvasLocation" x="-2070" y="-251"/>
         </scene>
     </scenes>
     <resources>

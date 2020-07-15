@@ -44,6 +44,7 @@
 		2A080C7E24BF48AF003766F0 /* FBToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A080C5A24BF48AF003766F0 /* FBToDo.swift */; };
 		2A080C7F24BF48AF003766F0 /* S.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A080C5B24BF48AF003766F0 /* S.swift */; };
 		2A6D426D24BF4EFF00C36FC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6D426C24BF4EFF00C36FC1 /* GoogleService-Info.plist */; };
+		2A6D427124BF52DE00C36FC1 /* StartupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D427024BF52DE00C36FC1 /* StartupVC.swift */; };
 		2A7A58BB24BF4805003C00E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A58BA24BF4805003C00E5 /* AppDelegate.swift */; };
 		2A7A58BD24BF4805003C00E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A58BC24BF4805003C00E5 /* SceneDelegate.swift */; };
 		2A7A58C424BF4806003C00E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A58C324BF4806003C00E5 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		2A080C5A24BF48AF003766F0 /* FBToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBToDo.swift; sourceTree = "<group>"; };
 		2A080C5B24BF48AF003766F0 /* S.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S.swift; sourceTree = "<group>"; };
 		2A6D426C24BF4EFF00C36FC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2A6D427024BF52DE00C36FC1 /* StartupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupVC.swift; sourceTree = "<group>"; };
 		2A7A58B724BF4805003C00E5 /* OrgAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrgAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7A58BA24BF4805003C00E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7A58BC24BF4805003C00E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		2A080C4A24BF48AF003766F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2A6D427024BF52DE00C36FC1 /* StartupVC.swift */,
 				2A080C4B24BF48AF003766F0 /* AddProjectVC.swift */,
 				2A080C4C24BF48AF003766F0 /* FullSizePhotoVC.swift */,
 				2A080C4D24BF48AF003766F0 /* ImportPhotoVC.swift */,
@@ -396,6 +399,7 @@
 			files = (
 				2A080C6424BF48AF003766F0 /* PhotoHeaderCHC.swift in Sources */,
 				2A080C6024BF48AF003766F0 /* NoteTCC.swift in Sources */,
+				2A6D427124BF52DE00C36FC1 /* StartupVC.swift in Sources */,
 				2A080C7024BF48AF003766F0 /* AddProjectVC.swift in Sources */,
 				2A080C6624BF48AF003766F0 /* ProjectCCC.swift in Sources */,
 				2A080C6A24BF48AF003766F0 /* ProjectHeaderCHC.swift in Sources */,
