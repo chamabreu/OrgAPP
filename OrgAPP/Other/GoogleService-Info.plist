@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>314107083543-c4jmn87s16t7h5ps0rt3uhh1ane8b08g.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.314107083543-c4jmn87s16t7h5ps0rt3uhh1ane8b08g</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCN1okaVpY39uD0CW17tKYFKiebKY5fgOw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>314107083543</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>jmb.OrgAPP</string>
+	<key>PROJECT_ID</key>
+	<string>jmb-orgapp</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jmb-orgapp.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:314107083543:ios:c23a1e75978154b2761552</string>
+	<key>DATABASE_URL</key>
+	<string>https://jmb-orgapp.firebaseio.com</string>
+</dict>
+</plist>

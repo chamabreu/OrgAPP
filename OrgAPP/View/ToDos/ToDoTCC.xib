@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ToDoTCC" rowHeight="132" id="KGk-i7-Jjw" customClass="ToDoTCC" customModule="OrgApp_V2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="581" height="132"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="CellView">
+                <rect key="frame" x="0.0" y="0.0" width="581" height="132"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bKK-pF-MXN">
+                        <rect key="frame" x="10" y="5" width="561" height="122"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97B-uj-cvR" userLabel="Done">
+                                <rect key="frame" x="0.0" y="0.5" width="30" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="MOS-1b-Lmr"/>
+                                    <constraint firstAttribute="height" constant="30" id="gQJ-d5-lVU"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="tertiaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" backgroundImage="circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <connections>
+                                    <action selector="markAsDone:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kfz-wM-nBs"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-gQ-BB8">
+                                <rect key="frame" x="50" y="0.0" width="511" height="122"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="To Do Title" placeholder="ToDoName" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="B5g-mU-MRh">
+                                        <rect key="frame" x="0.0" y="0.0" width="511" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Das ist eine BEschreibung des ToDos..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxt-KX-jte" userLabel="DescriptionLabel">
+                                        <rect key="frame" x="0.0" y="65.5" width="511" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79X-8P-mvI">
+                                        <rect key="frame" x="0.0" y="121" width="511" height="1"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="slz-Rb-WfG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="79X-8P-mvI" secondAttribute="trailing" id="Bz0-7Q-0vY"/>
+                                    <constraint firstAttribute="trailing" secondItem="oxt-KX-jte" secondAttribute="trailing" id="DUb-uS-O9w"/>
+                                    <constraint firstAttribute="trailing" secondItem="B5g-mU-MRh" secondAttribute="trailing" id="PRP-AA-eFP"/>
+                                </constraints>
+                            </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a85-tI-jUQ" userLabel="InfoButton">
+                                <rect key="frame" x="561" y="0.5" width="30" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="9wS-vq-PFm"/>
+                                    <constraint firstAttribute="height" constant="30" id="NPL-8Y-lsh"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="info.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="infoButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="24r-ux-4A1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="oTs-gQ-BB8" secondAttribute="bottom" id="gzT-H8-mE9"/>
+                            <constraint firstItem="oTs-gQ-BB8" firstAttribute="top" secondItem="bKK-pF-MXN" secondAttribute="top" id="mUy-3m-yHa"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bKK-pF-MXN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="4MU-XV-aLu"/>
+                    <constraint firstItem="bKK-pF-MXN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="DE4-pW-AEM"/>
+                    <constraint firstAttribute="bottom" secondItem="bKK-pF-MXN" secondAttribute="bottom" constant="5" id="Qb7-PI-xyD"/>
+                    <constraint firstAttribute="trailing" secondItem="bKK-pF-MXN" secondAttribute="trailing" constant="10" id="kFE-pi-4xE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="oxt-KX-jte" id="OrN-SI-86L"/>
+                <outlet property="doneButton" destination="97B-uj-cvR" id="jsj-fI-ji4"/>
+                <outlet property="infoButton" destination="a85-tI-jUQ" id="k15-nC-ipk"/>
+                <outlet property="toDoTitle" destination="B5g-mU-MRh" id="Ozg-LC-u5N"/>
+            </connections>
+            <point key="canvasLocation" x="299.27536231884062" y="164.0625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

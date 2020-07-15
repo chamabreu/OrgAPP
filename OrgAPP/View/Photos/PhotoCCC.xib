@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoCCC" customModule="OrgApp_V2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aSz-37-PCO" userLabel="Photo">
+                        <rect key="frame" x="0.0" y="1" width="100" height="97.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="F0b-LD-DUd"/>
+                            <constraint firstAttribute="height" constant="100" id="pn5-Ia-wiI"/>
+                        </constraints>
+                    </imageView>
+                    <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mt3-HX-vv5" userLabel="SelectOverlay">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="W2f-sR-2Lg" userLabel="SelectCheckMark">
+                        <rect key="frame" x="63" y="2.5" width="35" height="34"/>
+                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="4nE-QO-8B4"/>
+                            <constraint firstAttribute="height" constant="35" id="uK9-sN-6df"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aSz-37-PCO" secondAttribute="trailing" id="FJh-6L-ZQ1"/>
+                <constraint firstItem="aSz-37-PCO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Hdo-cN-qZl"/>
+                <constraint firstItem="aSz-37-PCO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Lls-ue-uDN"/>
+                <constraint firstItem="mt3-HX-vv5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="UDD-KO-FIM"/>
+                <constraint firstAttribute="bottom" secondItem="mt3-HX-vv5" secondAttribute="bottom" id="XEj-Pc-o3H"/>
+                <constraint firstItem="mt3-HX-vv5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gdt-jH-Qw6"/>
+                <constraint firstItem="W2f-sR-2Lg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="iPh-f5-hQv"/>
+                <constraint firstAttribute="trailing" secondItem="mt3-HX-vv5" secondAttribute="trailing" id="kFe-Sh-QiZ"/>
+                <constraint firstAttribute="bottom" secondItem="aSz-37-PCO" secondAttribute="bottom" id="m85-9Q-01J"/>
+                <constraint firstAttribute="trailing" secondItem="W2f-sR-2Lg" secondAttribute="trailing" constant="2" id="oyj-nx-Th3"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="100" height="100"/>
+            <connections>
+                <outlet property="photoView" destination="aSz-37-PCO" id="R67-LK-L5W"/>
+                <outlet property="selectCheckMark" destination="W2f-sR-2Lg" id="ivd-mn-sm5"/>
+                <outlet property="selectOverlay" destination="mt3-HX-vv5" id="dVg-Q0-cgk"/>
+            </connections>
+            <point key="canvasLocation" x="176.81159420289856" y="170.08928571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="photo.fill" catalog="system" width="64" height="46"/>
+    </resources>
+</document>
