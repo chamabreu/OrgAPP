@@ -1,5 +1,5 @@
-
 import Foundation
+
 class FBNote {
 	var uID: String
 	var name: String

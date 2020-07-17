@@ -1,6 +1,5 @@
 import Foundation
 
-
 class FBProject {
 	var uID: String
 	var name: String

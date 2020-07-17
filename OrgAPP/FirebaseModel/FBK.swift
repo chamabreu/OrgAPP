@@ -1,37 +1,31 @@
-//
-//  FBK.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 25.06.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import Foundation
 import Firebase
 
 
 struct FBK {
+	static let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
+
 	struct Categorys {
 		//MARK: -  CATEGORYS
 		static func createNewCategory(named name: String) -> String{
-			let dataBase = Database.database().reference().child(S.categorys).childByAutoId()
-			dataBase.child(S.name).setValue(name)
-			return dataBase.key!
+			let newCatUID = userDB.child(S.categorys).childByAutoId()
+			newCatUID.child(S.name).setValue(name)
+			return newCatUID.key!
 
 		}
 
 		static func deleteCategory(withID catID: String) {
-			let dataBase = Database.database().reference().child(S.categorys)
-			dataBase.child(catID).setValue(nil)
+			let categorysTree = userDB.child(S.categorys)
+			categorysTree.child(catID).setValue(nil)
 		}
 
 		static func loadAllCategorysAndProjects(projectsVC: ProjectsVC, loadingDispatcher: DispatchGroup) {
-			let catRef = Database.database().reference().child(S.categorys)
+			let categorysTree = userDB.child(S.categorys)
 			var allCats: [FBCategory] = []
 
 
 			// Hole alle Categorys vom Server
-			catRef.observeSingleEvent(of: .value) { (categoryList) in
+			categorysTree.observeSingleEvent(of: .value) { (categoryList) in
 
 				// Loope durch jede einzelne Category
 				for categoryEnum in categoryList.children {
@@ -43,7 +37,6 @@ struct FBK {
 					// Loope nun durch alle Online-Projecte der Category auf dem Server
 					for projectEnum in	onlineCategory.childSnapshot(forPath: S.projects).children {
 						let onlineProject = projectEnum as! DataSnapshot
-						print("\(onlineProject.key)")
 
 						// hänge das neue project an das Array in der neuen Category
 						newCat.projects.append(FBProject(uID: onlineProject.key, name: onlineProject.value as! String, parentCategoryUID: newCat.uID))
@@ -67,8 +60,8 @@ struct FBK {
 
 		//MARK: -  CATEGORY OBSERVERS
 		static func childAddedObserver(projectsVC: ProjectsVC) {
-			let catRef = Database.database().reference().child(S.categorys)
-			catRef.observe(.childAdded) { (addedCategory) in
+			let categorysTree = userDB.child(S.categorys)
+			categorysTree.observe(.childAdded) { (addedCategory) in
 				// Wenn die Category noch nicht Local vorhanden ist füge sie hinzu
 				if !projectsVC.allCategorys.contains(where: { (localCat) -> Bool in
 					return localCat.uID == addedCategory.key
@@ -87,8 +80,8 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(projectsVC: ProjectsVC) {
-			let catRef = Database.database().reference().child(S.categorys)
-			catRef.observe(.childRemoved) { (deletedCategory) in
+			let categorysTree = userDB.child(S.categorys)
+			categorysTree.observe(.childRemoved) { (deletedCategory) in
 
 				// Lösche die Locale Category wenn vorhanden
 				projectsVC.allCategorys.removeAll(where: { (localCategory) -> Bool in
@@ -103,23 +96,20 @@ struct FBK {
 	struct Projects {
 		//MARK: -  PROJECTS
 		static func createNewProject(named name: String, in category: FBCategory) {
-			let projectUID = Database.database().reference().child("\(S.categorys)/\(category.uID)/\(S.projects)").childByAutoId()
-			projectUID.setValue(name)
+			let newProjectUID = userDB.child("\(S.categorys)/\(category.uID)/\(S.projects)").childByAutoId()
+			newProjectUID.setValue(name)
 
-			let projectsRef = Database.database().reference().child(S.projects)
-			projectsRef.child(projectUID.key!).updateChildValues([S.name: name, S.parentCategory: category.uID])
+			let projectsTree = userDB.child(S.projects)
+			projectsTree.child(newProjectUID.key!).updateChildValues([S.name: name, S.parentCategory: category.uID])
 		}
 
 		static func renameProject(withID: String, to newName: String) {
-			let dataBase = Database.database().reference()
-			dataBase.child("\(S.projects)/\(withID)/\(S.name)").setValue(newName)
+			userDB.child("\(S.projects)/\(withID)/\(S.name)").setValue(newName)
 		}
 
 		static func deleteProject(project: FBProject) {
-			let dataBase = Database.database().reference()
-
 			// LÖösche alle ToDos
-			dataBase.child("\(S.projects)/\(project.uID)/\(S.toDos)").observeSingleEvent(of: .value) { (toDoList) in
+			userDB.child("\(S.projects)/\(project.uID)/\(S.toDos)").observeSingleEvent(of: .value) { (toDoList) in
 				for toDoEnum in toDoList.children {
 					let toDo = toDoEnum as! DataSnapshot
 					FBK.ToDos.deleteToDo(with: toDo.key, in: project.uID)
@@ -129,7 +119,7 @@ struct FBK {
 			}
 
 			// Lösche alle Notes
-			dataBase.child("\(S.projects)/\(project.uID)/\(S.notes)").observeSingleEvent(of: .value) { (noteList) in
+			userDB.child("\(S.projects)/\(project.uID)/\(S.notes)").observeSingleEvent(of: .value) { (noteList) in
 				for noteEnum in noteList.children {
 					let note = noteEnum as! DataSnapshot
 					FBK.Notes.deleteNote(with: note.key, in: project.uID)
@@ -137,8 +127,8 @@ struct FBK {
 			}
 
 
-			dataBase.child("\(S.projects)/\(project.uID)").setValue(nil)
-			dataBase.child("\(S.categorys)/\(project.parentCategoryUID)/\(S.projects)/\(project.uID)").setValue(nil)
+			userDB.child("\(S.projects)/\(project.uID)").setValue(nil)
+			userDB.child("\(S.categorys)/\(project.parentCategoryUID)/\(S.projects)/\(project.uID)").setValue(nil)
 
 		}
 
@@ -146,9 +136,9 @@ struct FBK {
 		//MARK: -  PROJECT OBSERVERS
 
 		static func childAddedObserver(projectsVC: ProjectsVC) {
-			let projectsRef = Database.database().reference().child(S.projects)
+			let projectsTree = userDB.child(S.projects)
 
-			projectsRef.observe(.childAdded) { (addedProject) in
+			projectsTree.observe(.childAdded) { (addedProject) in
 
 				// Hole die Category in der sich das Project befindet und speicher es als parentCategory
 				if let parentCategory = projectsVC.allCategorys.first(where: { (localCategory) -> Bool in
@@ -173,8 +163,8 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(projectsVC: ProjectsVC) {
-			let projectRef = Database.database().reference().child(S.projects)
-			projectRef.observe(.childRemoved) { (deletedProject) in
+			let projectsTree = userDB.child(S.projects)
+			projectsTree.observe(.childRemoved) { (deletedProject) in
 
 				// Hole die Category in der sich das Project befindet und speicher es als parentCategory
 				if let parentCategory = projectsVC.allCategorys.first(where: { (localCategory) -> Bool in
@@ -198,21 +188,20 @@ struct FBK {
 	struct ToDos {
 		//MARK: -  TODOS
 		static func createNewToDo(in projectID: String, unDoneToDosCountPlusOne nextPriority: Int){
-			let dataBase = Database.database().reference()
-			let projectToDoUID = dataBase.child("\(S.projects)/\(projectID)/\(S.toDos)").childByAutoId()
-			projectToDoUID.setValue("Undone #\(nextPriority)", andPriority: nextPriority)
-			
-			
-			let newToDoDict: [String: Any] = [S.name: "", S.toDoDescription: "", S.parentProject: projectID, S.done: false]
-			dataBase.child("\(S.toDos)/\(projectToDoUID.key!)").updateChildValues(newToDoDict)
+			let newToDoUID = userDB.child("\(S.projects)/\(projectID)/\(S.toDos)").childByAutoId()
+			newToDoUID.setValue("Undone #\(nextPriority)", andPriority: nextPriority)
+
+			let newToDoData: [String: Any] = [S.name: "", S.toDoDescription: "", S.parentProject: projectID, S.done: false]
+			userDB.child("\(S.toDos)/\(newToDoUID.key!)").updateChildValues(newToDoData)
+
 		}
 		
 		
 		static func deleteToDo(with UID: String, in projectID: String) {
-			let projectToDoRef = Database.database().reference().child("\(S.projects)/\(projectID)/\(S.toDos)/\(UID)")
-			let toDoRef = Database.database().reference().child(S.toDos)
+			let projectToDoRef = userDB.child("\(S.projects)/\(projectID)/\(S.toDos)/\(UID)")
+			let toDoTree = userDB.child(S.toDos)
 			projectToDoRef.removeValue()
-			toDoRef.child(UID).removeValue()
+			toDoTree.child(UID).removeValue()
 			
 		}
 
@@ -229,14 +218,14 @@ struct FBK {
 		}
 
 		static func loadToDos(of allToDoUIDs: [String], dispatcher: DispatchGroup, toDoVC: ToDosVC) {
-			let	toDosDataBase = Database.database().reference().child(S.toDos)
+			let	toDoTree = userDB.child(S.toDos)
 			var unDoneToDos: [FBToDo] = []
 			var doneToDos: [FBToDo] = []
 			let secondGroup = DispatchGroup()
 
 			for toDo in allToDoUIDs {
 				secondGroup.enter()
-				toDosDataBase.child(toDo).observeSingleEvent(of: .value) { (onlineToDo) in
+				toDoTree.child(toDo).observeSingleEvent(of: .value) { (onlineToDo) in
 					if (onlineToDo.childSnapshot(forPath: S.done).value as! Bool) == false {
 						unDoneToDos.append(FBToDo(uID: toDo, data: onlineToDo.value as? [String: AnyObject] ?? [:]))
 					}else {
@@ -259,8 +248,8 @@ struct FBK {
 
 		//MARK: -  ToDo Observers
 		static func childAddedObserver(allToDoUIDs: [String], toDoVC: ToDosVC, thisProject: DatabaseReference) {
-			let toDoRef = Database.database().reference().child(S.toDos)
-			toDoRef.observe(.childAdded) { (addedToDo) in
+			let toDoTree = userDB.child(S.toDos)
+			toDoTree.observe(.childAdded) { (addedToDo) in
 				if !allToDoUIDs.contains(where: { (toDo) -> Bool in // IF DONETODOS DOESNT CONTAIN THE ADDED TODO
 					return addedToDo.key == toDo
 				}) { // THEN ADD THE TODO
@@ -276,8 +265,8 @@ struct FBK {
 
 
 		static func childRemovedObserver(toDoVC: ToDosVC) {
-			let toDoRef = Database.database().reference().child(S.toDos)
-			toDoRef.observe(.childRemoved) { (removedChild) in
+			let toDoTree = userDB.child(S.toDos)
+			toDoTree.observe(.childRemoved) { (removedChild) in
 				if (removedChild.childSnapshot(forPath: S.done).value as! Bool) {
 					if let toDoIndex = toDoVC.doneToDos.firstIndex(where: { (toDo) -> Bool in
 						return toDo.uID == removedChild.key
@@ -297,8 +286,8 @@ struct FBK {
 		}
 
 		static func toDoChangedObserver(toDoVC: ToDosVC) {
-			let toDosRef = Database.database().reference().child(S.toDos)
-			toDosRef.observe(.childChanged) { (toDoSnap) in
+			let toDoTree = userDB.child(S.toDos)
+			toDoTree.observe(.childChanged) { (toDoSnap) in
 				// VARIABLES
 				let onlineToDo = FBToDo(uID: toDoSnap.key, data: toDoSnap.value as? [String: AnyObject] ?? [:])
 				let allToDos: [FBToDo] = toDoVC.unDoneToDos + toDoVC.doneToDos
@@ -369,16 +358,15 @@ struct FBK {
 	struct Notes {
 		//MARK: -  NOTES
 		static func saveNew(note: FBNote, in parentProject: String) {
-			let dataBase = Database.database().reference()
-			let newNoteRef = dataBase.child(S.notes).childByAutoId()
+			let newNoteUID = userDB.child(S.notes).childByAutoId()
 			
 			let newNoteData = [S.name: note.name, S.content: note.content, S.parentProject: parentProject]
-			newNoteRef.updateChildValues(newNoteData)
-			dataBase.child("\(S.projects)/\(note.parentProjectUID)/\(S.notes)/\(newNoteRef.key!)").setValue(note.name)
+			newNoteUID.updateChildValues(newNoteData)
+			userDB.child("\(S.projects)/\(note.parentProjectUID)/\(S.notes)/\(newNoteUID.key!)").setValue(note.name)
 		}
 
 		static func updateExisting(note: FBNote, in thisProject: DatabaseReference) {
-			let noteRef = Database.database().reference().child("\(S.notes)/\(note.uID)")
+			let noteRef = userDB.child("\(S.notes)/\(note.uID)")
 
 
 			noteRef.updateChildValues([S.name: note.name, S.content: note.content, S.parentProject: note.parentProjectUID])
@@ -388,10 +376,10 @@ struct FBK {
 		}
 		
 		static func deleteNote(with noteUID: String, in thisProject: String) {
-			let noteRef = Database.database().reference().child(S.notes)
-			noteRef.child(noteUID).removeValue()
+			let noteTree = userDB.child(S.notes)
+			noteTree.child(noteUID).removeValue()
 
-			let projectNoteRef = Database.database().reference().child("\(S.projects)/\(thisProject)/\(S.notes)/\(noteUID)")
+			let projectNoteRef = userDB.child("\(S.projects)/\(thisProject)/\(S.notes)/\(noteUID)")
 			projectNoteRef.removeValue()
 
 
@@ -403,7 +391,7 @@ struct FBK {
 		static func loadAllNotes(of thisProject: DatabaseReference, mainDispatcher: DispatchGroup, noteVC: NotesVC) {
 			var allNoteUIDS: [String] = []
 			var allNotes: [FBNote] = []
-			let notesRef = Database.database().reference().child(S.notes)
+			let notesTree = userDB.child(S.notes)
 			let loadingDispatcher = DispatchGroup()
 
 			thisProject.child(S.notes).observeSingleEvent(of: .value) { (noteList) in
@@ -414,7 +402,7 @@ struct FBK {
 
 				for note in allNoteUIDS {
 					loadingDispatcher.enter()
-					notesRef.child(note).observeSingleEvent(of: .value) { (noteDownload) in
+					notesTree.child(note).observeSingleEvent(of: .value) { (noteDownload) in
 						allNotes.append(FBNote(uID: note, data: noteDownload.value as? [String: String] ?? [:]))
 						loadingDispatcher.leave()
 					}
@@ -430,8 +418,8 @@ struct FBK {
 
 		//MARK: -  Note Observers
 		static func childAddedObserver(notesVC: NotesVC) {
-			let toDosRef = Database.database().reference().child(S.notes)
-			toDosRef.observe(.childAdded) { (noteAdded) in
+			let notesTree = userDB.child(S.notes)
+			notesTree.observe(.childAdded) { (noteAdded) in
 				if !notesVC.notes.contains(where: { (localNote) -> Bool in
 					return localNote.uID == noteAdded.key
 				}) {
@@ -442,8 +430,8 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(notesVC: NotesVC) {
-			let toDosRef = Database.database().reference().child(S.notes)
-			toDosRef.observe(.childRemoved) { (removedNote) in
+			let notesTree = userDB.child(S.notes)
+			notesTree.observe(.childRemoved) { (removedNote) in
 				if notesVC.notes.contains(where: { (localNote) -> Bool in
 					return localNote.uID == removedNote.key
 				}) {
@@ -456,8 +444,8 @@ struct FBK {
 		}
 
 		static func childChangedObserver(notesVC: NotesVC) {
-			let toDosRef = Database.database().reference().child(S.notes)
-			toDosRef.observe(.childChanged) { (changedNote) in
+			let notesTree = userDB.child(S.notes)
+			notesTree.observe(.childChanged) { (changedNote) in
 				if let noteIndex = notesVC.notes.firstIndex(where: { (localNote) -> Bool in
 					return localNote.uID == changedNote.key
 				}) {

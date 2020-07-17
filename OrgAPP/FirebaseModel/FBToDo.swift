@@ -1,12 +1,5 @@
-//
-//  FBToDo.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 02.07.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import Foundation
+
 class FBToDo {
 	var uID: String
 	var name: String

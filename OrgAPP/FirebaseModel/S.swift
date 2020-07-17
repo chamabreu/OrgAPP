@@ -1,11 +1,3 @@
-//
-//  S.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 30.06.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

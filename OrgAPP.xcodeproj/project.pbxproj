@@ -117,11 +117,11 @@
 		2A080C2F24BF48AF003766F0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A080C3024BF48AF003766F0 /* AddProject */,
 				2A080C3424BF48AF003766F0 /* Main.storyboard */,
+				2A080C3E24BF48AF003766F0 /* Projects */,
+				2A080C3024BF48AF003766F0 /* AddProject */,
 				2A080C3624BF48AF003766F0 /* Notes */,
 				2A080C3924BF48AF003766F0 /* Photos */,
-				2A080C3E24BF48AF003766F0 /* Projects */,
 				2A080C4524BF48AF003766F0 /* ToDos */,
 			);
 			path = View;
@@ -203,10 +203,10 @@
 			isa = PBXGroup;
 			children = (
 				2A080C5624BF48AF003766F0 /* FBCategory.swift */,
-				2A080C5724BF48AF003766F0 /* FBK.swift */,
 				2A080C5824BF48AF003766F0 /* FBNote.swift */,
 				2A080C5924BF48AF003766F0 /* FBProject.swift */,
 				2A080C5A24BF48AF003766F0 /* FBToDo.swift */,
+				2A080C5724BF48AF003766F0 /* FBK.swift */,
 				2A080C5B24BF48AF003766F0 /* S.swift */,
 			);
 			path = FirebaseModel;
