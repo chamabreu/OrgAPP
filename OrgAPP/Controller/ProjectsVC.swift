@@ -14,6 +14,13 @@ class ProjectsVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+
+		// First check if a User is Logged in - if False Return to Loginpage
+		if Auth.auth().currentUser == nil {
+			self.navigationController?.popToRootViewController(animated: true)
+		}
+		navigationItem.hidesBackButton = true
+
 		let loadCategoryDispatcher = DispatchGroup()
 		loadCategoryDispatcher.enter()
 		FBK.Categorys.loadAllCategorysAndProjects(projectsVC: self, loadingDispatcher: loadCategoryDispatcher)
@@ -47,18 +54,25 @@ class ProjectsVC: UIViewController {
 
 	}
 
-	@IBAction func dummyButtonPressed(_ sender: UIBarButtonItem) {
-//		var dataBase =  Database.database().reference().child("TestArea")
-//		dataBase.child("Counter \(upCounter)").setValue("Debug Down \(downCounter)", andPriority: downCounter) { (_, _) in
-//			self.downCounter -= 1
-//			self.upCounter += 1
-//		}
+	@IBAction func optionButtonPressed(_ sender: UIBarButtonItem) {
+		let optionsSheet = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+		let logOutAction = UIAlertAction(title: "Logout", style: .destructive) { (_) in
+			do {
+				try Auth.auth().signOut()
+				self.navigationController?.popToRootViewController(animated: true)
+				print("Logged out")
+				print(Auth.auth().currentUser)
+			}catch {
+				print("Error")
+			}
+		}
 
-//		dataBase.child("Counter \(upCounter)").setValue("Debug Down \(downCounter)") { (_, _) in
-//			self.downCounter -= 1
-//			self.upCounter += 1
-//		}
-		print(allCategorys.count)
+		optionsSheet.addAction(logOutAction)
+
+		DispatchQueue.main.async {
+			self.present(optionsSheet, animated: true, completion: nil)
+		}
+
 	}
 
 //MARK: -  USER INTERACTIVE FUNCTIONS

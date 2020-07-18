@@ -3,11 +3,12 @@ import Firebase
 
 
 struct FBK {
-	static let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
+
 
 	struct Categorys {
 		//MARK: -  CATEGORYS
 		static func createNewCategory(named name: String) -> String{
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let newCatUID = userDB.child(S.categorys).childByAutoId()
 			newCatUID.child(S.name).setValue(name)
 			return newCatUID.key!
@@ -15,11 +16,13 @@ struct FBK {
 		}
 
 		static func deleteCategory(withID catID: String) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let categorysTree = userDB.child(S.categorys)
 			categorysTree.child(catID).setValue(nil)
 		}
 
 		static func loadAllCategorysAndProjects(projectsVC: ProjectsVC, loadingDispatcher: DispatchGroup) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let categorysTree = userDB.child(S.categorys)
 			var allCats: [FBCategory] = []
 
@@ -60,6 +63,7 @@ struct FBK {
 
 		//MARK: -  CATEGORY OBSERVERS
 		static func childAddedObserver(projectsVC: ProjectsVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let categorysTree = userDB.child(S.categorys)
 			categorysTree.observe(.childAdded) { (addedCategory) in
 				// Wenn die Category noch nicht Local vorhanden ist füge sie hinzu
@@ -80,6 +84,7 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(projectsVC: ProjectsVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let categorysTree = userDB.child(S.categorys)
 			categorysTree.observe(.childRemoved) { (deletedCategory) in
 
@@ -96,6 +101,7 @@ struct FBK {
 	struct Projects {
 		//MARK: -  PROJECTS
 		static func createNewProject(named name: String, in category: FBCategory) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let newProjectUID = userDB.child("\(S.categorys)/\(category.uID)/\(S.projects)").childByAutoId()
 			newProjectUID.setValue(name)
 
@@ -104,10 +110,12 @@ struct FBK {
 		}
 
 		static func renameProject(withID: String, to newName: String) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			userDB.child("\(S.projects)/\(withID)/\(S.name)").setValue(newName)
 		}
 
 		static func deleteProject(project: FBProject) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			// LÖösche alle ToDos
 			userDB.child("\(S.projects)/\(project.uID)/\(S.toDos)").observeSingleEvent(of: .value) { (toDoList) in
 				for toDoEnum in toDoList.children {
@@ -136,6 +144,7 @@ struct FBK {
 		//MARK: -  PROJECT OBSERVERS
 
 		static func childAddedObserver(projectsVC: ProjectsVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let projectsTree = userDB.child(S.projects)
 
 			projectsTree.observe(.childAdded) { (addedProject) in
@@ -163,6 +172,7 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(projectsVC: ProjectsVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let projectsTree = userDB.child(S.projects)
 			projectsTree.observe(.childRemoved) { (deletedProject) in
 
@@ -188,6 +198,7 @@ struct FBK {
 	struct ToDos {
 		//MARK: -  TODOS
 		static func createNewToDo(in projectID: String, unDoneToDosCountPlusOne nextPriority: Int){
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let newToDoUID = userDB.child("\(S.projects)/\(projectID)/\(S.toDos)").childByAutoId()
 			newToDoUID.setValue("Undone #\(nextPriority)", andPriority: nextPriority)
 
@@ -198,6 +209,7 @@ struct FBK {
 		
 		
 		static func deleteToDo(with UID: String, in projectID: String) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let projectToDoRef = userDB.child("\(S.projects)/\(projectID)/\(S.toDos)/\(UID)")
 			let toDoTree = userDB.child(S.toDos)
 			projectToDoRef.removeValue()
@@ -218,6 +230,7 @@ struct FBK {
 		}
 
 		static func loadToDos(of allToDoUIDs: [String], dispatcher: DispatchGroup, toDoVC: ToDosVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let	toDoTree = userDB.child(S.toDos)
 			var unDoneToDos: [FBToDo] = []
 			var doneToDos: [FBToDo] = []
@@ -248,6 +261,7 @@ struct FBK {
 
 		//MARK: -  ToDo Observers
 		static func childAddedObserver(allToDoUIDs: [String], toDoVC: ToDosVC, thisProject: DatabaseReference) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let toDoTree = userDB.child(S.toDos)
 			toDoTree.observe(.childAdded) { (addedToDo) in
 				if !allToDoUIDs.contains(where: { (toDo) -> Bool in // IF DONETODOS DOESNT CONTAIN THE ADDED TODO
@@ -265,6 +279,7 @@ struct FBK {
 
 
 		static func childRemovedObserver(toDoVC: ToDosVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let toDoTree = userDB.child(S.toDos)
 			toDoTree.observe(.childRemoved) { (removedChild) in
 				if (removedChild.childSnapshot(forPath: S.done).value as! Bool) {
@@ -286,6 +301,7 @@ struct FBK {
 		}
 
 		static func toDoChangedObserver(toDoVC: ToDosVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let toDoTree = userDB.child(S.toDos)
 			toDoTree.observe(.childChanged) { (toDoSnap) in
 				// VARIABLES
@@ -358,6 +374,7 @@ struct FBK {
 	struct Notes {
 		//MARK: -  NOTES
 		static func saveNew(note: FBNote, in parentProject: String) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let newNoteUID = userDB.child(S.notes).childByAutoId()
 			
 			let newNoteData = [S.name: note.name, S.content: note.content, S.parentProject: parentProject]
@@ -366,6 +383,7 @@ struct FBK {
 		}
 
 		static func updateExisting(note: FBNote, in thisProject: DatabaseReference) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let noteRef = userDB.child("\(S.notes)/\(note.uID)")
 
 
@@ -376,6 +394,7 @@ struct FBK {
 		}
 		
 		static func deleteNote(with noteUID: String, in thisProject: String) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let noteTree = userDB.child(S.notes)
 			noteTree.child(noteUID).removeValue()
 
@@ -389,6 +408,7 @@ struct FBK {
 		//MARK: -  Note Single Time Loading
 
 		static func loadAllNotes(of thisProject: DatabaseReference, mainDispatcher: DispatchGroup, noteVC: NotesVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			var allNoteUIDS: [String] = []
 			var allNotes: [FBNote] = []
 			let notesTree = userDB.child(S.notes)
@@ -418,6 +438,7 @@ struct FBK {
 
 		//MARK: -  Note Observers
 		static func childAddedObserver(notesVC: NotesVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let notesTree = userDB.child(S.notes)
 			notesTree.observe(.childAdded) { (noteAdded) in
 				if !notesVC.notes.contains(where: { (localNote) -> Bool in
@@ -430,6 +451,7 @@ struct FBK {
 		}
 
 		static func childRemovedObserver(notesVC: NotesVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let notesTree = userDB.child(S.notes)
 			notesTree.observe(.childRemoved) { (removedNote) in
 				if notesVC.notes.contains(where: { (localNote) -> Bool in
@@ -444,6 +466,7 @@ struct FBK {
 		}
 
 		static func childChangedObserver(notesVC: NotesVC) {
+			let userDB = Database.database().reference().child(Auth.auth().currentUser?.uid ?? "NoActiveUser")
 			let notesTree = userDB.child(S.notes)
 			notesTree.observe(.childChanged) { (changedNote) in
 				if let noteIndex = notesVC.notes.firstIndex(where: { (localNote) -> Bool in

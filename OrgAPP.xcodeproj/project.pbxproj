@@ -45,11 +45,12 @@
 		2A080C7F24BF48AF003766F0 /* S.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A080C5B24BF48AF003766F0 /* S.swift */; };
 		2A64A1A624C1F48100040630 /* Roadmap in Resources */ = {isa = PBXBuildFile; fileRef = 2A64A1A524C1F48100040630 /* Roadmap */; };
 		2A6D426D24BF4EFF00C36FC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A6D426C24BF4EFF00C36FC1 /* GoogleService-Info.plist */; };
-		2A6D427124BF52DE00C36FC1 /* StartupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D427024BF52DE00C36FC1 /* StartupVC.swift */; };
+		2A6D427124BF52DE00C36FC1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D427024BF52DE00C36FC1 /* LoginVC.swift */; };
 		2A7A58BB24BF4805003C00E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A58BA24BF4805003C00E5 /* AppDelegate.swift */; };
 		2A7A58BD24BF4805003C00E5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A58BC24BF4805003C00E5 /* SceneDelegate.swift */; };
 		2A7A58C424BF4806003C00E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A58C324BF4806003C00E5 /* Assets.xcassets */; };
 		2A7A58C724BF4806003C00E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A58C524BF4806003C00E5 /* LaunchScreen.storyboard */; };
+		2AAB541324C2D91F00A157F9 /* CreateNewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB541224C2D91F00A157F9 /* CreateNewUserVC.swift */; };
 		325451D67D831C721956D873 /* Pods_OrgAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8E8E3EF26BA8B126A61368 /* Pods_OrgAPP.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,13 +93,14 @@
 		2A080C5B24BF48AF003766F0 /* S.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S.swift; sourceTree = "<group>"; };
 		2A64A1A524C1F48100040630 /* Roadmap */ = {isa = PBXFileReference; lastKnownFileType = text; path = Roadmap; sourceTree = "<group>"; };
 		2A6D426C24BF4EFF00C36FC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2A6D427024BF52DE00C36FC1 /* StartupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupVC.swift; sourceTree = "<group>"; };
+		2A6D427024BF52DE00C36FC1 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		2A7A58B724BF4805003C00E5 /* OrgAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrgAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7A58BA24BF4805003C00E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7A58BC24BF4805003C00E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2A7A58C324BF4806003C00E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A7A58C624BF4806003C00E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A7A58C824BF4806003C00E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AAB541224C2D91F00A157F9 /* CreateNewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewUserVC.swift; sourceTree = "<group>"; };
 		3A8E8E3EF26BA8B126A61368 /* Pods_OrgAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrgAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B30A7FF0F1862FE6FE08A5 /* Pods-OrgAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrgAPP.debug.xcconfig"; path = "Target Support Files/Pods-OrgAPP/Pods-OrgAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		5B2C739331EE2D87D2BF9210 /* Pods-OrgAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrgAPP.release.xcconfig"; path = "Target Support Files/Pods-OrgAPP/Pods-OrgAPP.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,14 +188,15 @@
 		2A080C4A24BF48AF003766F0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2A6D427024BF52DE00C36FC1 /* StartupVC.swift */,
+				2A6D427024BF52DE00C36FC1 /* LoginVC.swift */,
+				2AAB541224C2D91F00A157F9 /* CreateNewUserVC.swift */,
+				2A080C5124BF48AF003766F0 /* ProjectsVC.swift */,
 				2A080C4B24BF48AF003766F0 /* AddProjectVC.swift */,
 				2A080C4C24BF48AF003766F0 /* FullSizePhotoVC.swift */,
 				2A080C4D24BF48AF003766F0 /* ImportPhotoVC.swift */,
-				2A080C4E24BF48AF003766F0 /* NoteDetailVC.swift */,
 				2A080C4F24BF48AF003766F0 /* NotesVC.swift */,
+				2A080C4E24BF48AF003766F0 /* NoteDetailVC.swift */,
 				2A080C5024BF48AF003766F0 /* PhotosVC.swift */,
-				2A080C5124BF48AF003766F0 /* ProjectsVC.swift */,
 				2A080C5224BF48AF003766F0 /* ProjectTabBarVC.swift */,
 				2A080C5324BF48AF003766F0 /* ToDoDetailVC.swift */,
 				2A080C5424BF48AF003766F0 /* ToDosVC.swift */,
@@ -403,7 +406,7 @@
 			files = (
 				2A080C6424BF48AF003766F0 /* PhotoHeaderCHC.swift in Sources */,
 				2A080C6024BF48AF003766F0 /* NoteTCC.swift in Sources */,
-				2A6D427124BF52DE00C36FC1 /* StartupVC.swift in Sources */,
+				2A6D427124BF52DE00C36FC1 /* LoginVC.swift in Sources */,
 				2A080C7024BF48AF003766F0 /* AddProjectVC.swift in Sources */,
 				2A080C6624BF48AF003766F0 /* ProjectCCC.swift in Sources */,
 				2A080C6A24BF48AF003766F0 /* ProjectHeaderCHC.swift in Sources */,
@@ -413,6 +416,7 @@
 				2A080C7824BF48AF003766F0 /* ToDoDetailVC.swift in Sources */,
 				2A080C6824BF48AF003766F0 /* ProjectFooterCFC.swift in Sources */,
 				2A080C6C24BF48AF003766F0 /* ToDoDetailTCC.swift in Sources */,
+				2AAB541324C2D91F00A157F9 /* CreateNewUserVC.swift in Sources */,
 				2A080C7124BF48AF003766F0 /* FullSizePhotoVC.swift in Sources */,
 				2A080C7B24BF48AF003766F0 /* FBK.swift in Sources */,
 				2A080C7524BF48AF003766F0 /* PhotosVC.swift in Sources */,

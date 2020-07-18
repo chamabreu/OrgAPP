@@ -7,34 +7,101 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--StartupVC-->
+        <!--Create New UserVC-->
+        <scene sceneID="IOM-T3-DrI">
+            <objects>
+                <viewController id="Tqx-P1-RSn" customClass="CreateNewUserVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UxZ-jj-S1E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c66-nq-ZwR">
+                                <rect key="frame" x="50" y="100" width="275" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fQ6-LB-3yA">
+                                <rect key="frame" x="50" y="164" width="275" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XG-h7-vrh">
+                                <rect key="frame" x="131.5" y="218" width="112" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="DNN-ZO-PaQ"/>
+                                </constraints>
+                                <state key="normal" title="Create new user"/>
+                                <connections>
+                                    <action selector="createNewPressed:" destination="Tqx-P1-RSn" eventType="touchUpInside" id="kMS-Sf-vQs"/>
+                                    <action selector="logInButtonPressed:" destination="Sde-LY-e2b" eventType="touchUpInside" id="muo-zw-rXy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIB-bp-5Kr">
+                                <rect key="frame" x="317" y="10" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="Tqx-P1-RSn" eventType="touchUpInside" id="JZk-E4-gNL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="c66-nq-ZwR" firstAttribute="leading" secondItem="yMP-b6-jYp" secondAttribute="leading" constant="50" id="9Xe-pg-ahG"/>
+                            <constraint firstItem="2XG-h7-vrh" firstAttribute="centerX" secondItem="UxZ-jj-S1E" secondAttribute="centerX" id="JJ3-gH-u4P"/>
+                            <constraint firstItem="yMP-b6-jYp" firstAttribute="trailing" secondItem="eIB-bp-5Kr" secondAttribute="trailing" constant="10" id="SmD-2k-SAo"/>
+                            <constraint firstItem="yMP-b6-jYp" firstAttribute="trailing" secondItem="fQ6-LB-3yA" secondAttribute="trailing" constant="50" id="V8X-Rc-XXS"/>
+                            <constraint firstItem="yMP-b6-jYp" firstAttribute="trailing" secondItem="c66-nq-ZwR" secondAttribute="trailing" constant="50" id="dFb-kl-alw"/>
+                            <constraint firstItem="c66-nq-ZwR" firstAttribute="top" secondItem="yMP-b6-jYp" secondAttribute="top" constant="100" id="fAB-0c-Oeh"/>
+                            <constraint firstItem="2XG-h7-vrh" firstAttribute="top" secondItem="fQ6-LB-3yA" secondAttribute="bottom" constant="20" id="lJo-Fz-KjE"/>
+                            <constraint firstItem="fQ6-LB-3yA" firstAttribute="leading" secondItem="yMP-b6-jYp" secondAttribute="leading" constant="50" id="qlZ-Se-gIA"/>
+                            <constraint firstItem="fQ6-LB-3yA" firstAttribute="top" secondItem="c66-nq-ZwR" secondAttribute="bottom" constant="30" id="u99-VJ-yB8"/>
+                            <constraint firstItem="eIB-bp-5Kr" firstAttribute="top" secondItem="yMP-b6-jYp" secondAttribute="top" constant="10" id="yXq-bE-YHc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yMP-b6-jYp"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTF" destination="c66-nq-ZwR" id="qiG-9Q-z14"/>
+                        <outlet property="passTF" destination="fQ6-LB-3yA" id="tzI-4u-Qwr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8VL-K7-at6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1258" y="-969"/>
+        </scene>
+        <!--LoginVC-->
         <scene sceneID="1fl-gY-fwt">
             <objects>
-                <viewController id="Sde-LY-e2b" customClass="StartupVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Sde-LY-e2b" customClass="LoginVC" customModule="OrgAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Puy-7T-5dg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-H3-lAl">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1@1.de" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-H3-lAl">
                                 <rect key="frame" x="50" y="144" width="275" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-fL-Nha">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qweqwe" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-fL-Nha">
                                 <rect key="frame" x="50" y="208" width="275" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UaI-GS-eGr">
-                                <rect key="frame" x="166.5" y="262" width="42" height="30"/>
+                                <rect key="frame" x="137.5" y="262" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="XMr-ZQ-Ub5"/>
+                                </constraints>
                                 <state key="normal" title="Log In"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="rQ0-wa-B3U"/>
+                                    <action selector="logInButtonPressed:" destination="Sde-LY-e2b" eventType="touchUpInside" id="ni1-tB-WDQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iog-8U-5oj">
                                 <rect key="frame" x="288" y="617" width="67" height="30"/>
                                 <state key="normal" title="New User"/>
+                                <connections>
+                                    <action selector="createUserButtonPressed:" destination="Sde-LY-e2b" eventType="touchUpInside" id="Lah-8O-N4k"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyO-OS-bXU">
                                 <rect key="frame" x="170" y="74" width="35" height="32"/>
@@ -61,6 +128,14 @@
                         <viewLayoutGuide key="safeArea" id="Yu0-3L-set"/>
                     </view>
                     <navigationItem key="navigationItem" id="GDp-5D-CCg"/>
+                    <connections>
+                        <outlet property="createUserButton" destination="Iog-8U-5oj" id="pQ2-dD-T0n"/>
+                        <outlet property="emailTF" destination="y7o-H3-lAl" id="7Ns-7G-Bc5"/>
+                        <outlet property="logInButton" destination="UaI-GS-eGr" id="Rn2-ih-khn"/>
+                        <outlet property="passTF" destination="cPL-fL-Nha" id="Xth-2K-gFU"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowProjectsVCSegue" id="Ulp-X4-M80"/>
+                        <segue destination="Tqx-P1-RSn" kind="presentation" identifier="CreateNewUserSegue" id="s7u-tS-9ro"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D9M-iy-tAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,9 +184,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="HWJ-Ov-aDK">
-                        <barButtonItem key="rightBarButtonItem" title="Dummy" id="Qxt-eH-pE3">
+                        <barButtonItem key="rightBarButtonItem" title="Options" id="Qxt-eH-pE3">
                             <connections>
-                                <action selector="dummyButtonPressed:" destination="BYZ-38-t0r" id="yQ8-Le-qJB"/>
+                                <action selector="optionButtonPressed:" destination="BYZ-38-t0r" id="yQ8-Le-qJB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

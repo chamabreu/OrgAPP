@@ -15,7 +15,10 @@ struct S {
 	static var name = "Name"
 	static var parentCategory = "ParentCategory"
 	static var parentProject = "ParentProject"
-
+	static var logInText = "Log In"
+	static var createUserText = "Create new user"
+	static var newUserQuestion = "New User?"
+	
 	struct CustomCells {
 		static let projectCell = "ProjectCCC"
 		static let projectHeader = "ProjectHeaderCHC"
@@ -29,6 +32,8 @@ struct S {
 	}
 
 	struct Segues {
+		static let createUser = "CreateNewUserSegue"
+		static let showProjects = "ShowProjectsVCSegue"
 		static let showProject = "ProjectDetailSegue"
 		static let addProject = "AddProjectSegue"
 		static let toDoDetail = "ToDoDetailSegue"

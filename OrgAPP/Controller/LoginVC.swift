@@ -19,6 +19,12 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		emailTF.delegate = self
+		passTF.delegate = self
+
+		S.Funcs.createKeyboardToolbar(style: .done, target: emailTF, execute: #selector(keyBoardDone))
+		S.Funcs.createKeyboardToolbar(style: .done, target: passTF, execute: #selector(keyBoardDone))
+
     }
 
 	@IBAction func logInButtonPressed(_ sender: UIButton) {
@@ -55,4 +61,48 @@ class LoginVC: UIViewController {
 		self.performSegue(withIdentifier: S.Segues.createUser, sender: nil)
 	}
 
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		// Get the CreateNewUserVC as Variable
+		if let createNewVC = segue.destination as? CreateNewUserVC {
+			createNewVC.logInVC = self
+		}
+	}
+
+	@objc func keyBoardDone() {
+		if emailTF.isFirstResponder {
+			emailTF.resignFirstResponder()
+		}else if passTF.isFirstResponder {
+			passTF.resignFirstResponder()
+		}
+	}
+
+}
+
+
+//MARK: -  UITextField Delegate
+extension LoginVC: UITextFieldDelegate {
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		return true
+	}
+
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+
+	}
+
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		if textField === emailTF {
+			passTF.becomeFirstResponder()
+		}else if textField === passTF {
+			passTF.endEditing(true)
+		}
+		return true
+	}
+
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+		return true
+	}
+
+	func textFieldDidEndEditing(_ textField: UITextField) {
+
+	}
 }
