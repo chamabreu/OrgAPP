@@ -1,0 +1,24 @@
+Login System:
+	VC Login View
+		Learn about Auth.auth().currentUser or userStateObserver
+	VC Create new User
+
+
+
+
+Projects VC:
+	Basic:
+		Get Only Projects of logged in User
+	Advanced:
+		Implement Tab Bar for "Private Projects" and "Shared Projects"
+
+
+
+
+Shared Projects:
+	Research possibilitys for sharing Projects
+		Ideas:
+			1) Copy Project Data to another User
+				Maybe hard to Sync???
+			2) Project gets Array of "Allowed Users"
+				Maybe hard to query the Shared Projects
