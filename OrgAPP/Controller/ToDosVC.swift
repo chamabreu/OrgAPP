@@ -28,7 +28,7 @@ class ToDosVC: UITableViewController {
 		tabBarVC = self.parent as? ProjectTabBarVC
 		thisProject = tabBarVC.thisProject
 
-		toDosDataBase = Database.database().reference().child(S.toDos)
+		toDosDataBase = Database.database().reference().child(FBK.loggedInUserID).child(S.toDos)
 
 		let singleLoadDispatcher = DispatchGroup()
 		singleLoadDispatcher.enter()

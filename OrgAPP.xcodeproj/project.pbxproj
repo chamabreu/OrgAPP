@@ -192,14 +192,14 @@
 				2AAB541224C2D91F00A157F9 /* CreateNewUserVC.swift */,
 				2A080C5124BF48AF003766F0 /* ProjectsVC.swift */,
 				2A080C4B24BF48AF003766F0 /* AddProjectVC.swift */,
+				2A080C5424BF48AF003766F0 /* ToDosVC.swift */,
+				2A080C5324BF48AF003766F0 /* ToDoDetailVC.swift */,
 				2A080C4C24BF48AF003766F0 /* FullSizePhotoVC.swift */,
 				2A080C4D24BF48AF003766F0 /* ImportPhotoVC.swift */,
 				2A080C4F24BF48AF003766F0 /* NotesVC.swift */,
 				2A080C4E24BF48AF003766F0 /* NoteDetailVC.swift */,
 				2A080C5024BF48AF003766F0 /* PhotosVC.swift */,
 				2A080C5224BF48AF003766F0 /* ProjectTabBarVC.swift */,
-				2A080C5324BF48AF003766F0 /* ToDoDetailVC.swift */,
-				2A080C5424BF48AF003766F0 /* ToDosVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

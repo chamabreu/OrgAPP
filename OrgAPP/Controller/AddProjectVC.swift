@@ -22,7 +22,7 @@ class AddProjectVC: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		categoryRef = Database.database().reference().child(S.categorys)
+		categoryRef = Database.database().reference().child(FBK.loggedInUserID).child(S.categorys)
 //		categoryRef.observeSingleEvent(of: .value) { (snap) in
 //			self.allCategorys.removeAll()
 //			for catSnapEnum in snap.children {

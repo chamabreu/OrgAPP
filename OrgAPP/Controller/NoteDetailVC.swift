@@ -24,7 +24,7 @@ class NoteDetailVC: UIViewController {
     override func viewDidLoad() {
 		super.viewDidLoad()
 
-		thisNoteReference = Database.database().reference().child("\(S.notes)/\(thisNote.uID)")
+		thisNoteReference = Database.database().reference().child(FBK.loggedInUserID).child("\(S.notes)/\(thisNote.uID)")
 		S.Funcs.createKeyboardToolbar(style: .done, target: noteContentField, execute: #selector(doneEditing))
 		S.Funcs.createKeyboardToolbar(style: .done, target: noteTitleField, execute: #selector(doneEditing))
 

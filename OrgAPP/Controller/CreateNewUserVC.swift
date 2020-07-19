@@ -28,7 +28,7 @@ class CreateNewUserVC: UIViewController {
 		if let email = emailTF.text, let password = passTF.text {
 			Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
 				if let e = error {
-					print("Error: \(e.localizedDescription)")
+					self.errorAlert(error: e)
 				}else {
 					// Notify the User
 					self.successWindow()
@@ -56,6 +56,18 @@ class CreateNewUserVC: UIViewController {
 
 		DispatchQueue.main.async {
 			self.present(successAlert, animated: true, completion: nil)
+		}
+
+	}
+
+	func errorAlert(error: Error) {
+		let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+		let okButton = UIAlertAction(title: "Ok", style: .default,handler: nil)
+
+		errorAlert.addAction(okButton)
+
+		DispatchQueue.main.async {
+			self.present(errorAlert, animated: true, completion: nil)
 		}
 
 	}

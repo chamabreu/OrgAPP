@@ -59,15 +59,14 @@ class ProjectsVC: UIViewController {
 		let logOutAction = UIAlertAction(title: "Logout", style: .destructive) { (_) in
 			do {
 				try Auth.auth().signOut()
-				self.navigationController?.popToRootViewController(animated: true)
-				print("Logged out")
-				print(Auth.auth().currentUser)
+				// If success SceneDelegate set LoginVC as rootController
 			}catch {
-				print("Error")
+				print("Error: \(error)")
 			}
 		}
-
 		optionsSheet.addAction(logOutAction)
+
+		optionsSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
 		DispatchQueue.main.async {
 			self.present(optionsSheet, animated: true, completion: nil)
@@ -123,7 +122,7 @@ class ProjectsVC: UIViewController {
 		case S.Segues.showProject:
 			let tabBarVC = segue.destination as! ProjectTabBarVC
 			tabBarVC.projectsVC = self
-			tabBarVC.thisProject = Database.database().reference().child("\(S.projects)/\(sender as! String)")
+			tabBarVC.thisProject = Database.database().reference().child(FBK.loggedInUserID).child("\(S.projects)/\(sender as! String)")
 
 		default:
 			break

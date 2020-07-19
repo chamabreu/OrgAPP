@@ -34,7 +34,7 @@ class ToDoDetailVC: UIViewController {
 	@IBAction func saveButton(_ sender: UIButton) {
 		toDoTitleTF.resignFirstResponder()
 		toDoDescriptionTF.resignFirstResponder()
-		let toDoRef = Database.database().reference().child("\(S.toDos)/\(thisToDo.uID)")
+		let toDoRef = Database.database().reference().child(FBK.loggedInUserID).child("\(S.toDos)/\(thisToDo.uID)")
 //		toDoRef.child(S.name).setValue(thisToDo.name)
 //		toDoRef.child(S.toDoDescription).setValue(thisToDo.toDoDescription)
 		toDoRef.updateChildValues([S.name: thisToDo.name, S.toDoDescription: thisToDo.toDoDescription])

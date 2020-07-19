@@ -27,6 +27,12 @@ class LoginVC: UIViewController {
 
     }
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(true)
+		emailTF.text?.removeAll()
+		passTF.text?.removeAll()
+	}
+
 	@IBAction func logInButtonPressed(_ sender: UIButton) {
 		// Manual verification???
 		//......
@@ -40,18 +46,22 @@ class LoginVC: UIViewController {
 		if let email = emailTF.text, let password = passTF.text {
 			Auth.auth().signIn(withEmail: email, password: password) { (userData, error) in
 				if let e = error {
-					print("Error: \(e.localizedDescription)")
-					// Print Statement only for Debugging.
-					// Create an Alert to inform User about the Error
-
-
-
-				} else {
-					// No Error -> segue to the ProjectsVC
-					self.performSegue(withIdentifier: S.Segues.showProjects, sender: nil)
-
+					self.errorAlert(error: e)
 				}
+				// If no Error - Scenedelegate roots to ProjectsVC on Login
 			}
+		}
+
+	}
+
+	func errorAlert(error: Error) {
+		let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+		let okButton = UIAlertAction(title: "Ok", style: .default,handler: nil)
+
+		errorAlert.addAction(okButton)
+
+		DispatchQueue.main.async {
+			self.present(errorAlert, animated: true, completion: nil)
 		}
 
 	}

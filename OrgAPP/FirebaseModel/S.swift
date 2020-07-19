@@ -33,7 +33,6 @@ struct S {
 
 	struct Segues {
 		static let createUser = "CreateNewUserSegue"
-		static let showProjects = "ShowProjectsVCSegue"
 		static let showProject = "ProjectDetailSegue"
 		static let addProject = "AddProjectSegue"
 		static let toDoDetail = "ToDoDetailSegue"
