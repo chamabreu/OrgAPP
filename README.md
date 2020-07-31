@@ -11,3 +11,6 @@ Just switched from internal storage to Firebase - so cleaning is in Process.
 CleanCode reworking in Process:
 I am aware that my Code is not that 100% Clean.
 Still optimizing and applying new learned stuff to improve the structure of the Code. :)
+
+NO DESIGN SO FAR.
+Just functionality!
