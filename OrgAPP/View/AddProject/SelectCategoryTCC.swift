@@ -1,30 +1,21 @@
-//
-//  SelectCategoryTCC.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 21.04.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import UIKit
 
+// A Custom Table View Cell for selecting a existing Category in ProjectCreation-Process
 class SelectCategoryTCC: UITableViewCell {
+	// The category Title
 	@IBOutlet weak var categoryLabel: UILabel!
-	var thisCategory: FBCategory!
+	// The button which appears if a category name is given of no existing category
 	@IBOutlet weak var addCatButton: UIButton!
+	// A Reference to a category
+	var thisCategory: FBCategory!
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-//		categoryLabel.text = thisCategory.name
-		
     }
 
+	
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
-	@IBAction func addNewCategory(_ sender: UIButton) {
-	}
+
 }

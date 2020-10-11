@@ -1,20 +1,46 @@
 import Foundation
 import Firebase
 
-
+// Static Functions for the "FireBase" API
 struct FBK {
+	// Set this to the logged in user - maybe theres a better way to store the user logged in
 	static var loggedInUserID: String = ""
 
+
+	/*
+	All Functions are based on the FireBase RealTime DataBase and work with Observers to catch Data
+	Mostly its a similar approach - Example createNewCategory:
+
+		// Get the userDataBase of logged in user
+		let userDB = Database.database().reference().child(loggedInUserID)
+		// Create a new Node and save its UUID
+		let newCatUID = userDB.child(S.categorys).childByAutoId()
+		// Set the Name of the Category
+		newCatUID.child(S.name).setValue(name)
+		// return the UUID to the Function Caller
+		return newCatUID.key!
+
+
+	*/
+
+	// Documentation not completed!!!!
+	
+	//MARK: -  CATEGORYS
 	struct Categorys {
-		//MARK: -  CATEGORYS
+		// Create new Category
 		static func createNewCategory(named name: String) -> String{
+			// Get the userDataBase of logged in user
 			let userDB = Database.database().reference().child(loggedInUserID)
+			// Create a new Node and save its UUID
 			let newCatUID = userDB.child(S.categorys).childByAutoId()
+			// Set the Name of the Category
 			newCatUID.child(S.name).setValue(name)
+			// return the UUID to the Function Caller
 			return newCatUID.key!
 
 		}
 
+		// Delete a Category
 		static func deleteCategory(withID catID: String) {
 			let userDB = Database.database().reference().child(loggedInUserID)
 			let categorysTree = userDB.child(S.categorys)
@@ -22,41 +48,41 @@ struct FBK {
 		}
 
 		static func loadAllCategorysAndProjects(projectsVC: ProjectsVC, loadingDispatcher: DispatchGroup) {
-			print(FBK.loggedInUserID)
 			let userDB = Database.database().reference().child(loggedInUserID)
 			let categorysTree = userDB.child(S.categorys)
 			var allCats: [FBCategory] = []
 
 
-			// Hole alle Categorys vom Server
+			// Get all Categorys Single Time
 			categorysTree.observeSingleEvent(of: .value) { (categoryList) in
 
-				// Loope durch jede einzelne Category
+				// Loope through Categorys
 				for categoryEnum in categoryList.children {
 					let onlineCategory = categoryEnum as! DataSnapshot
 
-					// erstelle eine neue Category
+					// create new Local Category
 					let newCat = FBCategory(uID: onlineCategory.key, name: onlineCategory.childSnapshot(forPath: S.name).value as! String)
 
-					// Loope nun durch alle Online-Projecte der Category auf dem Server
+					// Now Loop through each Category Projects
 					for projectEnum in	onlineCategory.childSnapshot(forPath: S.projects).children {
 						let onlineProject = projectEnum as! DataSnapshot
 
-						// hänge das neue project an das Array in der neuen Category
+						// Attach the Project to the current CategoryCycle
 						newCat.projects.append(FBProject(uID: onlineProject.key, name: onlineProject.value as! String, parentCategoryUID: newCat.uID))
 					}
 
-					// Hänge an das allCatsArray die einzelne Category welche alle nötigen PRojecte enthält
+					// Attach the Category to the allCategory Array - the Category contains all including Projects
 					allCats.append(newCat)
 
 
-					// For-Loop fertig, starte wieder mit nächster Category
+					// Get to next Category
 				}
 
-				// setze nun im ViewController die allCategorys ein
+				// After full Category Load
+				// Transfer the Category Array to the ProjectsVC
 				projectsVC.allCategorys = allCats
 
-				// und verlasse den loadingDispatcher um im ViewController das UI zu laden
+				// and leave the categoryDispatcher to make place to 
 				loadingDispatcher.leave()
 			}
 		}
@@ -77,10 +103,6 @@ struct FBK {
 				projectsVC.projectsCollectionView.reloadData()
 
 			}
-
-		}
-
-		static func childChangedObserver() {
 
 		}
 
@@ -167,10 +189,6 @@ struct FBK {
 					}
 				}
 			}
-		}
-
-		static func childChangedObserver(projectsVC: ProjectsVC) {
-
 		}
 
 		static func childRemovedObserver(projectsVC: ProjectsVC) {

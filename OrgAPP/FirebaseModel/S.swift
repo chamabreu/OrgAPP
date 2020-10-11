@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-
+// This file is for saving Static Functions and Strings
 struct S {
 	static var categorys = "Categorys"
 	static var tempCategoryUID = "TempCategoryUID"
@@ -41,14 +41,13 @@ struct S {
 		static let fullSizePhoto = "FullSizePhotoSegue"
 	}
 
-
+	// The Keyboard Toolbar with the "Done" button
 	struct Funcs {
 		static func createKeyboardToolbar(style: UIBarButtonItem.Style, target: UITextField, execute: Selector) {
 			let toolBar = UIToolbar()
 			toolBar.sizeToFit()
 
 			if style == .done {
-				print("Make DonButton")
 				let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 				let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: execute)
 				toolBar.setItems([flexibleSpace,doneButton], animated: true)
@@ -61,7 +60,6 @@ struct S {
 			toolBar.sizeToFit()
 
 			if style == .done {
-				print("Make DonButton")
 				let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 				let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: execute)
 				toolBar.setItems([flexibleSpace,doneButton], animated: true)

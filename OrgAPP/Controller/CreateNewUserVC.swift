@@ -1,29 +1,26 @@
-//
-//  CreateNewUserVC.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 18.07.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import UIKit
 import FirebaseAuth
 
+// ViewController for UserCreation
 class CreateNewUserVC: UIViewController {
+	// View References
 	@IBOutlet weak var emailTF: UITextField!
 	@IBOutlet weak var passTF: UITextField!
 
+	// The LoginVC which segues to here
 	var logInVC: LoginVC!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		// Transfer the entered emailadress if exists from loginVC
 		if logInVC.emailTF.text != "" {
 			emailTF.text = logInVC.emailTF.text!
 		}
 
-        // Do any additional setup after loading the view.
     }
 
+	// User creates a new Account
 	@IBAction func createNewPressed(_ sender: UIButton) {
 		if let email = emailTF.text, let password = passTF.text {
 			Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
@@ -40,7 +37,7 @@ class CreateNewUserVC: UIViewController {
 
 
 	}
-
+	// UserFeedback of creationproces
 	func successWindow() {
 		let successAlert = UIAlertController(title: "User Created", message: "A new User with e-Mail \(emailTF.text!) is created.", preferredStyle: .alert)
 		let okButton = UIAlertAction(title: "Ok", style: .default) { _ in
@@ -60,6 +57,7 @@ class CreateNewUserVC: UIViewController {
 
 	}
 
+	// Feedback of Errors
 	func errorAlert(error: Error) {
 		let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
 		let okButton = UIAlertAction(title: "Ok", style: .default,handler: nil)
@@ -72,6 +70,7 @@ class CreateNewUserVC: UIViewController {
 
 	}
 
+	// Cancel the creationprocess and return to LoginScreen
 	@IBAction func cancelPressed(_ sender: UIButton) {
 		self.dismiss(animated: true, completion: nil)
 	}

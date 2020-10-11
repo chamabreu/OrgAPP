@@ -1,14 +1,8 @@
-//
-//  ToDoDetailTCC.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 28.05.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import UIKit
 
+// The Detail-View of an ToDo - gets called if "i" button is pressed in ToDosVC
 class ToDoDetailTCC: UITableViewCell {
+	// References
 	@IBOutlet weak var toDoTitleTF: UITextField!
 	@IBOutlet weak var toDoDescriptionTF: UITextField!
 

@@ -1,15 +1,9 @@
-//
-//  StartupVC.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 15.07.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import UIKit
 import FirebaseAuth
 
+// LoginScreen opens if not Login State is found or User logged out
 class LoginVC: UIViewController {
+	// View References
 	@IBOutlet weak var emailTF: UITextField!
 	@IBOutlet weak var passTF: UITextField!
 	@IBOutlet weak var logInButton: UIButton!
@@ -21,18 +15,20 @@ class LoginVC: UIViewController {
 
 		emailTF.delegate = self
 		passTF.delegate = self
-
+		// Instantiate the KeyboardToolbar
 		S.Funcs.createKeyboardToolbar(style: .done, target: emailTF, execute: #selector(keyBoardDone))
 		S.Funcs.createKeyboardToolbar(style: .done, target: passTF, execute: #selector(keyBoardDone))
 
     }
 
+	// Reset Window and Textfields on Disappear
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(true)
 		emailTF.text?.removeAll()
 		passTF.text?.removeAll()
 	}
 
+	// User Logs in
 	@IBAction func logInButtonPressed(_ sender: UIButton) {
 		// Manual verification???
 		//......
@@ -49,11 +45,13 @@ class LoginVC: UIViewController {
 					self.errorAlert(error: e)
 				}
 				// If no Error - Scenedelegate roots to ProjectsVC on Login
+				// See SceneDelegate.swift -> Auth.auth().addStateDidChangeListener
 			}
 		}
 
 	}
 
+	// Error Message
 	func errorAlert(error: Error) {
 		let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
 		let okButton = UIAlertAction(title: "Ok", style: .default,handler: nil)
@@ -66,10 +64,11 @@ class LoginVC: UIViewController {
 
 	}
 
-
+	// Route to CreateNewUserVC
 	@IBAction func createUserButtonPressed(_ sender: UIButton) {
 		self.performSegue(withIdentifier: S.Segues.createUser, sender: nil)
 	}
+
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		// Get the CreateNewUserVC as Variable
@@ -78,6 +77,7 @@ class LoginVC: UIViewController {
 		}
 	}
 
+	// Keyboard Toolbar DoneButton
 	@objc func keyBoardDone() {
 		if emailTF.isFirstResponder {
 			emailTF.resignFirstResponder()

@@ -23,14 +23,6 @@ class AddProjectVC: UIViewController {
         super.viewDidLoad()
 
 		categoryRef = Database.database().reference().child(FBK.loggedInUserID).child(S.categorys)
-//		categoryRef.observeSingleEvent(of: .value) { (snap) in
-//			self.allCategorys.removeAll()
-//			for catSnapEnum in snap.children {
-//				let cat = catSnapEnum as! DataSnapshot
-//				self.allCategorys.append(FBCategory(uID: cat.key, name: cat.childSnapshot(forPath: S.name).value as! String))
-//			}
-//		}
-
 
 		categoryTableView.delegate = self
 		categoryTableView.dataSource = self

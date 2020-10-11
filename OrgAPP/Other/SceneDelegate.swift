@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		Auth.auth().addStateDidChangeListener { (auth, user) in
 			if let usr = user {
-				print("Logged In")
 				FBK.loggedInUserID = usr.uid
 				let navBar = UINavigationController()
 				let projectsVC = mainSB.instantiateViewController(withIdentifier: "ProjectsVC") as! ProjectsVC
@@ -36,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				self.window?.makeKeyAndVisible()
 
 			}else {
-				print("Logged Out")
 				FBK.loggedInUserID = "nope"
 				let loginVC = mainSB.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
 				self.window?.rootViewController = loginVC

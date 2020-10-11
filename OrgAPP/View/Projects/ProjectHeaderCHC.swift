@@ -1,20 +1,15 @@
-//
-//  ProjectHeaderCHC.swift
-//  OrgAPP
-//
-//  Created by Jan Manuel Brenner on 20.04.20.
-//  Copyright © 2020 Jan Manuel Brenner. All rights reserved.
-//
-
 import UIKit
 
+// The Header of a Category Section
 class ProjectHeaderCHC: UICollectionReusableView {
+	// Title of Category
 	@IBOutlet weak var headerLabel: UILabel!
+	// A Button to delete Categorys if empty
 	@IBOutlet weak var deleteCategory: UIButton!
 
-	//	var thisCategory: Category!
-		var thisCategory: FBCategory!
-
+	// get the own category on instantiation
+	var thisCategory: FBCategory!
+	//
 	var projectsVC: ProjectsVC!
 
     override func awakeFromNib() {
@@ -23,8 +18,6 @@ class ProjectHeaderCHC: UICollectionReusableView {
     }
 
 	@IBAction func deleteCategory(_ sender: UIButton) {
-//		RealmFuncs.Edit.deleteObject(thisCategory)
-//		projectsVC.projectsCollectionView.reloadData()
 		FBK.Categorys.deleteCategory(withID: thisCategory.uID)
 //		print("DUMMY BUTTON DELETE CATEGORY")
 	}

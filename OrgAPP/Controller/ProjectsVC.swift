@@ -1,12 +1,15 @@
 import UIKit
 import Firebase
 
+// The Overview over All Projects and Categorys - its the Main View of the APP
 class ProjectsVC: UIViewController {
+	// View References
 	@IBOutlet weak var projectsCollectionView: UICollectionView!
 	@IBOutlet weak var addProjectButton: UIButton!
 	@IBOutlet weak var dummyButton: UIBarButtonItem!
 
 
+	// Empty array which holds later all Categorys of RealtimeDatabase
 	var allCategorys: [FBCategory] = []
 
 
@@ -19,19 +22,31 @@ class ProjectsVC: UIViewController {
 		if Auth.auth().currentUser == nil {
 			self.navigationController?.popToRootViewController(animated: true)
 		}
+
+		// Hide NavBarButton cause this View should be the "Lowest View"
 		navigationItem.hidesBackButton = true
 
+		// Create a Dispatcher for Async Work while loading Categorys
 		let loadCategoryDispatcher = DispatchGroup()
+		// Enter the Dispatcher
 		loadCategoryDispatcher.enter()
+
+		// Call Function to load Categorys and Projects and transmit the dispatcher.
 		FBK.Categorys.loadAllCategorysAndProjects(projectsVC: self, loadingDispatcher: loadCategoryDispatcher)
+
+		// Dispatcher gets notified when all Categorys and Projects are loaded
 		loadCategoryDispatcher.notify(queue: .main) {
+			// Register now Observers for Removing and Adding Categorys and Projects
 			FBK.Categorys.childAddedObserver(projectsVC: self)
 			FBK.Categorys.childRemovedObserver(projectsVC: self)
 			FBK.Projects.childAddedObserver(projectsVC: self)
 			FBK.Projects.childRemovedObserver(projectsVC: self)
+
+			// And finally reload the Collection View to update UI
 			self.projectsCollectionView.reloadData()
 		}
 
+		// Set Delegates, DataSources, Views for Project Collection and Configure Appearance
 		projectsCollectionView.delegate = self
 		projectsCollectionView.dataSource = self
 		projectsCollectionView.register(UINib(nibName: S.CustomCells.projectCell, bundle: nil), forCellWithReuseIdentifier: S.CustomCells.projectCell)
@@ -40,12 +55,9 @@ class ProjectsVC: UIViewController {
 		let collectionFlowLayout = projectsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
 		collectionFlowLayout.itemSize = CGSize(width: ((view.frame.size.width - 20) / 3), height: ((view.frame.size.width - 20) / 3))
 
+		// Add a ContextMenu for the Plus Button to have multiple Options (Create Project or Category)
 		let addProjCatContext = UIContextMenuInteraction(delegate: self)
 		addProjectButton.addInteraction(addProjCatContext)
-
-
-
-
 
 	}
 
@@ -54,6 +66,8 @@ class ProjectsVC: UIViewController {
 
 	}
 
+
+	//MARK: -  USER INTERACTIVE FUNCTIONS
 	@IBAction func optionButtonPressed(_ sender: UIBarButtonItem) {
 		let optionsSheet = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
 		let logOutAction = UIAlertAction(title: "Logout", style: .destructive) { (_) in
@@ -74,13 +88,16 @@ class ProjectsVC: UIViewController {
 
 	}
 
-//MARK: -  USER INTERACTIVE FUNCTIONS
+
 	@IBAction func buttonPressed(_ sender: UIButton) {
+		// Check Button Pressed
+		// Show the AddProjectVC to add Project and choose or create Categorys
 		if sender == addProjectButton {
 			showAddProjectVC()
 		}
 	}
 
+	// Instantiate Modal View of AddProjectVC
 	func showAddProjectVC() {
 		let addVC = AddProjectVC()
 		addVC.projectsVC = self
@@ -88,6 +105,7 @@ class ProjectsVC: UIViewController {
 		present(addVC, animated: true, completion: nil)
 	}
 
+	// Instantiate AlertView to add only Category - Can be accessed by ContextMenu on addProjectButton
 	func showAddCategoryVC(with name: String?) {
 		var categoryNameTextField = UITextField()
 		let addCategory = UIAlertController(title: "New Category?", message: "Create a new Category", preferredStyle: .alert)
@@ -111,14 +129,13 @@ class ProjectsVC: UIViewController {
 		}
 
 		present(addCategory, animated: true, completion: nil)
-
-
-
 	}
 
 
+	// Preparation for Segues
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		switch segue.identifier {
+		// Segue to Project View - its a TabBarView
 		case S.Segues.showProject:
 			let tabBarVC = segue.destination as! ProjectTabBarVC
 			tabBarVC.projectsVC = self
@@ -145,7 +162,7 @@ extension ProjectsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
 		let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: S.CustomCells.projectFooter, for: IndexPath(row: 0, section: section)) as! ProjectFooterCFC
-		return footer.blackSeperator.frame.size
+		return footer.barSeperator.frame.size
 	}
 
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -231,9 +248,8 @@ extension ProjectsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
 
 }
 
-
+//MARK: -  addProjectButton - Context Menu (longPress)
 extension ProjectsVC: UIContextMenuInteractionDelegate {
-
 	func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
 		projectsCollectionView.reloadData()
 
